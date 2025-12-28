@@ -26,8 +26,15 @@ const neonShadow = `
   0 0 12px #006080
 `;
 
+interface FloatingIcon {
+  id: number;
+  symbol: string;
+  top: string;
+  left: string;
+}
+
 export default function Hero() {
-  const [floatingIcons, setFloatingIcons] = useState([]);
+  const [floatingIcons, setFloatingIcons] = useState<FloatingIcon[]>([]);
   const titleRef = useRef(null);
   const isInView = useInView(titleRef, { once: false });
 

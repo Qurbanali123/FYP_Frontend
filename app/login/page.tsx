@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 export default function LoginRoleSelect() {
   const router = useRouter();
 
-  const handleSelect = (role) => {
+  const handleSelect = (role: string) => {
     router.push(`/login/${role}`);
   };
   

@@ -18,7 +18,13 @@ const rightItems = [
 
 const centralLink = '#shield';
 
-const InfoCard = ({ icon: Icon, title, text }) => (
+interface InfoCardProps {
+  icon: React.ElementType;
+  title: string;
+  text: string;
+}
+
+const InfoCard = ({ icon: Icon, title, text }: InfoCardProps) => (
   <a
     href={centralLink}
     className="group block bg-gradient-to-br from-[#004080]/60 via-[#00b8ff]/40 to-[#14b8a6]/40 rounded-xl p-4 shadow-lg hover:shadow-2xl hover:scale-105 transition-transform duration-300 cursor-pointer border border-cyan-400/30"
