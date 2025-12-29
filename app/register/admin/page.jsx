@@ -113,49 +113,39 @@ export default function AdminRegister() {
     }`;
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 pt-20 bg-gray-100">
+    <div className="min-h-screen flex items-center justify-center p-6 pt-20 bg-gradient-to-br from-[#000a1f] via-[#001f3f] to-[#003d66]">
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
         className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl p-6 w-full max-w-md"
       >
         {step === "registration" ? (
           <>
-            <h2 className="text-3xl font-bold text-center text-[#00b8ff] mb-3">Admin Registration</h2>
-            {errors.general && <p className="text-red-500 text-center mb-3">{errors.general}</p>}
+            <h2 className="text-3xl font-bold text-[#00b8ff] text-center mb-4">
+              Admin Registration
+            </h2>
+
+            {errors.general && <p className="text-red-600 text-center mb-4">{errors.general}</p>}
 
             <form onSubmit={handleRegistrationSubmit} className="space-y-4">
-              <input name="name" placeholder="Full Name" onChange={handleChange} className={inputClass("name")} />
-              <input name="email" placeholder="Email Address" onChange={handleChange} className={inputClass("email")} />
-              <input type="password" name="password" placeholder="Password" onChange={handleChange} className={inputClass("password")} />
-              <input type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleChange} className={inputClass("confirmPassword")} />
+              <input name="name" placeholder="Full Name" value={form.name} onChange={handleChange} className={inputClass("name")} required />
+              <input name="email" placeholder="Email Address" value={form.email} onChange={handleChange} className={inputClass("email")} required />
+              <input type="password" name="password" placeholder="Password" value={form.password} onChange={handleChange} className={inputClass("password")} required />
+              <input type="password" name="confirmPassword" placeholder="Confirm Password" value={form.confirmPassword} onChange={handleChange} className={inputClass("confirmPassword")} required />
 
-              <button disabled={loading} className="w-full bg-gradient-to-br from-[#004080] via-[#00b8ff] to-[#14b8a6] text-white py-3 rounded-lg font-semibold hover:opacity-90 transition duration-300 disabled:opacity-50">
+              <button type="submit" disabled={loading} className="w-full bg-gradient-to-r from-[#004080] to-[#00b8ff] text-white py-3 rounded-lg font-semibold hover:opacity-90 transition duration-300 disabled:opacity-50">
                 {loading ? "Sending OTP..." : "Register"}
               </button>
             </form>
-
-            <p className="text-center text-sm text-gray-700 mt-4">
-              Already have an account?{" "}
-              <span onClick={() => router.push("/login/admin")} className="text-[#00b8ff] font-medium cursor-pointer hover:underline">
-                Login here
-              </span>
-            </p>
           </>
         ) : (
           <>
-            <h2 className="text-3xl font-bold text-center text-[#00b8ff] mb-3">Verify Email</h2>
-            <p className="text-gray-700 mb-6 text-center">
-              Enter the OTP sent to <span className="font-semibold">{form.email}</span>
-            </p>
-
-            {errors.general && <p className="text-red-500 text-center mb-3">{errors.general}</p>}
+            <h2 className="text-3xl font-bold text-[#00b8ff] text-center mb-4">Verify OTP</h2>
 
             <form onSubmit={handleOTPSubmit} className="space-y-4">
-              <input name="otp" placeholder="Enter 6-digit OTP" onChange={handleChange} maxLength="6" className={inputClass("otp")} />
-              <button disabled={loading} className="w-full bg-gradient-to-br from-[#004080] via-[#00b8ff] to-[#14b8a6] text-white py-3 rounded-lg font-semibold hover:opacity-90 transition duration-300 disabled:opacity-50">
-                {loading ? "Verifying..." : "Verify OTP"}
+              <input name="otp" placeholder="6-digit OTP" value={form.otp} onChange={handleChange} maxLength="6" className={inputClass("otp")} required />
+              <button type="submit" disabled={loading} className="w-full bg-gradient-to-r from-[#004080] to-[#00b8ff] text-white py-3 rounded-lg font-semibold hover:opacity-90 transition duration-300 disabled:opacity-50">
+                {loading ? "Verifying..." : "Verify"}
               </button>
             </form>
 
