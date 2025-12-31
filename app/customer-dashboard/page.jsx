@@ -44,7 +44,8 @@ export default function CustomerDashboard() {
 
     setLoading(true);
     try {
-      const res = await fetch(`/api/seller/verify/${productId.trim()}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/seller/verify/${productId.trim()}`);
+
 
       if (res.status === 404) {
         setProduct(null);
@@ -138,7 +139,8 @@ export default function CustomerDashboard() {
                 if (!isComponentMounted) return;
                 setLoading(true);
 
-                const res = await fetch(`/api/seller/verify/${productId}`);
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/seller/verify/${productId}`);
+
 
                 if (!isComponentMounted) return;
 
